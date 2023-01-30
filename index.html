@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-Revision</title>
+</head>
+<body>
+
+    <h1 id="demo"></h1>
+
+
+    <script>
+        //Array Methods
+        
+        //map()
+            //map(value,index,array)---->parameter--values pass
+
+            let numbers=[1,2,3,4,5];
+            let sqrt=numbers.map((value)=>{
+                return Math.sqrt(value).toFixed(2);
+            });
+            console.table(sqrt); 
+
+        //filter()
+            const no=[1,2,3,4,5];
+            let evennum=no.filter(function(value)
+            {
+                return value%2==0;
+            });
+            let oddnum=no.filter(function(value)
+            {
+                return value%2==1;
+            });
+            console.log("evennum :" +evennum)
+            console.log("oddnum :" +oddnum)
+
+            function oddandEven(a=10){
+                if(a%2==0){
+                    console.log("a is " + "odd");
+                }
+                else{
+                    console.log("a is " + "even");
+                }
+            }
+            oddandEven();    
+
+         //find()
+                const items=[
+                    {no: 1, item:"chips", cost:45},
+                    {no: 2, item:"cookie", cost:80},
+                    {no: 3, item:"juice", cost:20},
+                ];
+                let affordable=items.find(function(value){
+                    return value.cost<50;
+                });
+                console.log(affordable);
+
+        //findIndex
+                let affordable_findIndex=items.findIndex(function(value){
+                    return value.cost>50;
+                });
+                console.log("findIndex : " +affordable_findIndex);
+
+        //reduce()
+                const fees=[240, 675,45,98,764];
+                let totalfees=fees.reduce(function(previousval,currentval){
+                    return previousval+currentval;
+                });
+                console.log("totalfees : " +totalfees);        
+   
+        //foreach()
+                //foreach(value,index,array)
+
+                let v=[1,2,3,4,5,6,7,8,9];
+                v.forEach((value)=>{
+                    console.log(value);
+                });
+
+                v.forEach((value,index)=>{
+                    console.log("index: " +index , "value: " +value);
+                });
+        //some
+                let arr4=n.every(function (n) {
+                return n>18;
+                })
+                console.log(arr4);        
+                
+        //every
+                let every=array.every(function(e){
+              return e>0;
+            })
+
+		console.log(every)
+        
+        //Callback
+                callback function
+                function greeting(name) {
+                alert(`Hello, ${name}`);
+                }
+
+                function processUserInput(callback) {
+                const name = prompt("Please enter your name.");
+                callback(name);
+                }
+
+                processUserInput(greeting);
+
+        //callback hell function
+
+                function divide(x,y){
+                    return x/y
+                }
+
+                function multiply(x,y){
+                    return x*y
+                }
+
+                function add(x,y){
+                    return x+y
+                }
+
+                function compute(callBack, x, y){
+                    return callBack(x,y)
+                }
+
+                console.log(compute(divide, 10, 5))    // 2
+                console.log(compute(multiply, 10, 5))  // 50
+                console.log(compute(add,10,5))         // 15
+
+
+                function myDisplayer(some) {
+                document.getElementById("demo").innerHTML = some;
+                }
+                
+                async function myFunction() {return "Hello";}
+                
+                myFunction().then(
+                    function(value) {myDisplayer(value);}
+                );
+
+
+          //promise    
+              var p1=new Promise(function(resolve,reject){
+                var num=Math.random();
+                if(num<0.5){
+                  resolve(num);
+                }else{
+                  reject(num);
+                }
+              });
+
+              p1.then(function(result){
+                console.log("success",result);
+              }).catch(function(result){
+                console.log("error",result);
+              })
+
+              //promise all
+
+              p1 = Promise.resolve(50);
+                  p2 = 200
+                  p3 = new Promise(function(resolve, reject) {
+                      setTimeout(resolve, 100, 'geek');
+                  });
+              
+                  Promise.all([p1, p2, p3]).then(function(values) {
+                      document.write(values);
+                  });
+  
+
+                    // promiss chain
+                    new Promise(function(resolve, reject) {
+
+                    setTimeout(() => resolve(1), 1000); // (*)
+
+                    }).then(function(result) { // (**)
+
+                      alert(result); // 1
+                      return result * 2;
+
+                    }).then(function(result) { // (*)
+
+                      alert(result); // 2
+                      return result * 2;
+
+                    }).then(function(result) {
+
+                      alert(result); // 4
+                      return result * 2;
+
+                    });
+
+                    // Set Item
+                    localStorage.setItem("lastname", "siva");
+
+                    // Retrieve
+                    document.getElementById("demo").innerHTML = localStorage.getItem("lastname");
+
+                    sessionStorage.setItem("lastname", "Siva");
+                    let personName = sessionStorage.getItem("lastname");
+                    document.getElementById("demo").innerHTML = personName;
+                    var a;
+                    var b="hello";
+                    console.log(a);
+                    console.log(b);
+
+
+                    async function myDisplay() {
+                      let myPromise = new Promise(function(resolve, reject) {
+                        resolve("I love You !!");
+                        reject("I hate you!!");
+                      });
+                      document.getElementById("demo1").innerHTML = await myPromise;
+                    }
+
+
+                    myDisplay();
+                  p1 = Promise.resolve(50);
+                    p2 = 200
+                    p3 = new Promise(function(resolve, reject) {
+                        setTimeout(resolve, 100, 'geek');
+                    });
+                    Promise.all([p1, p2, p3]).then(function(values) {
+                        document.write(values);
+                    });
+
+                    function calculate(a, b) {
+                      const add = a + b;
+                      const subtract = a - b;
+                      const multiply = a * b;
+                      const divide = a / b;
+                      return [add, subtract, multiply, divide];
+                    }
+
+
+                  const [add, subtract, multiply, divide] = calculate(4, 7);
+                  document.write("<p>Sum: " + add + "</p>");
+                  document.write("<p>Difference " + subtract + "</p>");
+                  document.write("<p>Product: " + multiply + "</p>");
+                  document.write("<p>Quotient " + divide + "</p>");
+                  
+                  async function f() {
+                  const thenable = {
+                    then(resolve, _reject) {
+                      resolve("resolved!");
+                    },
+                  };
+                  console.log(await thenable); // "resolved!"
+                }
+                f();
+
+
+                async function f() {
+                  const thenable = {
+                    then(resolve, reject) {
+                      reject(new Error("rejected!"));
+                    },
+                  };
+                  await thenable; // Throws Error: rejected!
+                }
+                f();
+
+
+
+
+                async function myDisplay() {
+                  
+                  let myPromise = new Promise(function(resolve, reject) {
+                    let num=parseInt(prompt("enter the number"));
+                    if(num<5){
+                    resolve("I love You !!");
+                    }
+                    else
+                    reject("I hate you!!");
+                  });
+                  document.getElementById("demo1").innerHTML = await myPromise;
+                }
+
+                myDisplay();
+
+              //bind
+
+              let bind=main4.bind(obj,1,2,3);
+
+              bind();
+
+              //setinterval
+              let a=1;
+              let time=setInterval(() => {
+                console.log("hello everyone")
+                a++;
+                if(a>10){
+                  clearInterval(time)
+                }
+              },2000);
+
+                  // param()
+
+                  function cheakaromstron(num) {
+                      var num2=num;
+                      var num3=num;
+                      var len=findlen(num);
+                      var ans=0;
+                      while (num2!=0) {
+                        var  sum2=num2%10;
+                        num2=(num2-sum2)/10;
+                          ans+=sum2**len;
+                      }
+
+                      if(num3==ans){
+                        console.log("yes armstrong");
+                      }
+                      else{
+                        console.log("not armstrong"); 
+                      }
+                  }  
+                  function findlen(count) {
+                  var len=0;
+                  while (count!=0) {
+                    var count1=count % 10; 
+                    var count=(count1-count)/10;
+                      ++len;  
+                  }
+                    return len
+                  }           
+                  cheakaromstron(407)
+
+   </script>
+</body>
+</html>
